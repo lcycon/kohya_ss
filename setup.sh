@@ -547,13 +547,13 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     fi
 
     # Symlink paths
-    libnvinfer_plugin_symlink="$VENV_DIR/lib/python3.10/site-packages/tensorrt/libnvinfer_plugin.so.7"
-    libnvinfer_symlink="$VENV_DIR/lib/python3.10/site-packages/tensorrt/libnvinfer.so.7"
+    libnvinfer_plugin_symlink="$VENV_DIR/lib/python3.10/site-packages/tensorrt_libs/libnvinfer_plugin.so.7"
+    libnvinfer_symlink="$VENV_DIR/lib/python3.10/site-packages/tensorrt_libs/libnvinfer.so.7"
     libcudart_symlink="$VENV_DIR/lib/python3.10/site-packages/nvidia/cuda_runtime/lib/libcudart.so.11.0"
 
     #Target file paths
-    libnvinfer_plugin_target="$VENV_DIR/lib/python3.10/site-packages/tensorrt/libnvinfer_plugin.so.8"
-    libnvinfer_target="$VENV_DIR/lib/python3.10/site-packages/tensorrt/libnvinfer.so.8"
+    libnvinfer_plugin_target="$VENV_DIR/lib/python3.10/site-packages/tensorrt_libs/libnvinfer_plugin.so.8"
+    libnvinfer_target="$VENV_DIR/lib/python3.10/site-packages/tensorrt_libs/libnvinfer.so.8"
     libcudart_target="$VENV_DIR/lib/python3.10/site-packages/nvidia/cuda_runtime/lib/libcudart.so.12"
 
     echo "Checking symlinks now."
@@ -561,13 +561,13 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     create_symlinks "$libnvinfer_symlink" "$libnvinfer_target"
     create_symlinks "$libcudart_symlink" "$libcudart_target"
 
-    if [ -d "${VENV_DIR}/lib/python3.10/site-packages/tensorrt/" ]; then
-      export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${VENV_DIR}/lib/python3.10/site-packages/tensorrt/"
+    if [ -d "${VENV_DIR}/lib/python3.10/site-packages/tensorrt_libs/" ]; then
+      export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${VENV_DIR}/lib/python3.10/site-packages/tensorrt_libs/"
     else
-      echo "${VENV_DIR}/lib/python3.10/site-packages/tensorrt/ not found; not linking library."
+      echo "${VENV_DIR}/lib/python3.10/site-packages/tensorrt_libs/ not found; not linking library."
     fi
 
-    if [ -d "${VENV_DIR}/lib/python3.10/site-packages/tensorrt/" ]; then
+    if [ -d "${VENV_DIR}/lib/python3.10/site-packages/tensorrt_libs/" ]; then
       export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${VENV_DIR}/lib/python3.10/site-packages/nvidia/cuda_runtime/lib/"
     else
       echo "${VENV_DIR}/lib/python3.10/site-packages/nvidia/cuda_runtime/lib/ not found; not linking library."
